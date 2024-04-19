@@ -30,6 +30,7 @@ in
     '';
     plugins = with pkgs.unstable.vimPlugins; [
       alpha-nvim
+      toggleterm-nvim
       nvim-autopairs
       auto-session
       plenary-nvim
