@@ -1,8 +1,13 @@
 local function SuggestOneLine()
   local suggestion = vim.fn['copilot#Accept']("")
-  local bar = vim.fn['copilot#TextQueuedForInsertion']()
-  return bar:match("^[^\n]*")
+  if suggestion == "" then
+    return vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
+  else
+    local bar = vim.fn['copilot#TextQueuedForInsertion']()
+    return bar:match("^[^\n]*")
+  end
 end
+
 local map = vim.keymap.set
 map('i', '<Tab>', SuggestOneLine, {expr = true, remap = false})
 vim.api.nvim_set_keymap('i', '<C-l>', 'copilot#Accept("<CR>")', {expr = true, silent = true})
