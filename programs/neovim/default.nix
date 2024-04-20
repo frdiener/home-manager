@@ -42,7 +42,7 @@ in
       cmp_luasnip
       lspkind-nvim
       copilot-vim
-      copilot-cmp
+      # copilot-cmp
       indent-blankline-nvim
       gitsigns-nvim
       telescope-nvim

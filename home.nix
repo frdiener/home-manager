@@ -1,4 +1,3 @@
-
 { config, lib, pkgs, ... }:
 
 let
@@ -21,6 +20,7 @@ in
   imports =
   [
     ./programs/neovim
+    # ./programs/touchegg
   ];
   home = {
     stateVersion = "23.11";
@@ -37,6 +37,7 @@ in
       unstable.thunderbird
       telegram-desktop
       btop
+      zellij
       somafm-cli
       keepassxc
       ledger-live-desktop
@@ -84,7 +85,7 @@ in
       shellAliases = {
         ll = "ls -l";
         sudo = "sudo ";
-        conf = "sudo nvim /etc/nixos/configuration.nix";
+        conf = "sudo -e /etc/nixos/configuration.nix";
         hconf = "nvim ~/.config/home-manager/home.nix";
       };
       # session Variables
@@ -104,6 +105,23 @@ in
     starship = {
       enable = true;
       package = unstablePkgs.starship;
+    };
+  };
+  systemd.user.services.fusuma = {
+    Unit = {
+      Description = "Fusuma Touch Gestures";
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.fusuma}/bin/fusuma";
+      Restart = "on-failure";
+      Environment = "DISPLAY=:0";
     };
   };
 }
