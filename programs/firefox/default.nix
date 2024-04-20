@@ -1,9 +1,6 @@
 { config, pkgs, lib,  ... }:
 let
-  unstable = import <nixos-unstable> {
-    config = { allowUnfree = true;
-    }; 
-  };
+  unstable = import <nixos-unstable> { inherit config; };
 in
 {
   programs.firefox = {

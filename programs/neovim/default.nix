@@ -1,9 +1,6 @@
 { config, pkgs, lib,  ... }:
 let
-  unstablePkgs = import <nixos-unstable> {
-    config = { allowUnfree = true;
-    }; 
-  };
+  unstablePkgs = import <nixos-unstable> {};
   nvimConfig = import ./nvimConfig.nix { inherit lib; };
 in
 {

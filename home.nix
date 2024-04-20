@@ -7,7 +7,7 @@ let
     }; 
   };
 in
-{
+{ 
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
@@ -20,7 +20,6 @@ in
   imports =
   [
     ./programs/neovim
-    # ./programs/touchegg
   ];
   home = {
     stateVersion = "23.11";
