@@ -56,10 +56,7 @@ in
       cmp-nvim-lsp
       
       vim-matchup
-      {
-        plugin = gruvbox-material;
-        config = "colorscheme gruvbox-material";
-      }
+      gruvbox-nvim
       {
         plugin = nvim-colorizer-lua;
         config = ''
