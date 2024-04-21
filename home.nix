@@ -56,27 +56,27 @@ in
       hunspellDicts.de-de
       lua-language-server
       fzf
-      # vimPlugins.telescope-fzf-native-nvim
       lazygit
+      vifm
+      poppler_utils # pdftotext
     ];
-    file = {
-      # ".bashrc".source = dotfiles/bashrc;
-      # ".config/nvim".source = ./nvim;
-    };
   };
   xdg = {
     enable = true;
-    configFile."user-dirs.dirs".text = ''
-      XDG_DESKTOP_DIR="$HOME/"
-      XDG_DOCUMENTS_DIR="$HOME/"
-      XDG_VIDEOS_DIR="$HOME/"
-      XDG_DOWNLOAD_DIR="$HOME/downloads"
-      XDG_DOWNLOADS_DIR="$HOME/downloads"
-      XDG_MUSIC_DIR="$HOME/music"
-      XDG_PICTURES_DIR="$HOME/pics"  
-      XDG_TEMPLATES_DIR="$HOME/"     
-      XDG_PUBLICSHARE_DIR="$HOME/"   
-    '';                              
+    configFile = {
+      "vifm/vifmrc".source = ./config/vifmrc;
+      "user-dirs.dirs".text = ''
+        XDG_DESKTOP_DIR="$HOME/"
+        XDG_DOCUMENTS_DIR="$HOME/"
+        XDG_VIDEOS_DIR="$HOME/"
+        XDG_DOWNLOAD_DIR="$HOME/downloads"
+        XDG_DOWNLOADS_DIR="$HOME/downloads"
+        XDG_MUSIC_DIR="$HOME/music"
+        XDG_PICTURES_DIR="$HOME/pics"  
+        XDG_TEMPLATES_DIR="$HOME/"     
+        XDG_PUBLICSHARE_DIR="$HOME/"   
+      '';                              
+    };
   };
   programs ={
     bash = {
