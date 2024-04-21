@@ -119,14 +119,14 @@ lspconfig.jdtls.setup{
           template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
         },
       },
-      configuration = {
-        runtimes = {
-          {
-            name = "JavaSE-11",
-            path = "/usr/lib/jvm/java-11-openjdk",
-          },
-        },
-      },
+      -- configuration = {
+      --   runtimes = {
+      --     {
+      --       name = "JavaSE-11",
+      --       path = "/usr/lib/jvm/java-11-openjdk",
+      --     },
+      --   },
+      -- },
     },
   },
 }
