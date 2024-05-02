@@ -46,12 +46,12 @@ in
       telescope-fzf-native-nvim
       cmp-treesitter
       nvim-treesitter.withAllGrammars
-
+      formatter-nvim
       nvim-jdtls
       vim-nix
       nvim-lspconfig
       cmp-nvim-lsp
-      
+      ale      
       vim-matchup
       gruvbox-nvim
       {
@@ -63,5 +63,10 @@ in
         '';
       }
     ];
+  };
+  xdg = {
+    configFile = {
+      "checkstyle.xml".source = ../../config/checkstyle.xml;
+    };
   };
 }

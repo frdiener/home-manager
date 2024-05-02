@@ -55,6 +55,7 @@ in
       hunspellDicts.en-us
       hunspellDicts.de-de
       lua-language-server
+      checkstyle
       fzf
       lazygit
       vifm
