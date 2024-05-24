@@ -9,9 +9,6 @@ let
 in
 { 
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-    }))
     (self: super: {
       unstable = unstablePkgs;
     })
@@ -60,6 +57,9 @@ in
       lazygit
       vifm
       poppler_utils # pdftotext
+      unstable.openjdk22
+      unstable.eclipses.eclipse-java
+      lsd
     ];
   };
   xdg = {
@@ -83,7 +83,9 @@ in
     bash = {
       enable = true;
       shellAliases = {
-        ll = "ls -l";
+        l = "lsd -l";
+        ll = "lsd -la";
+        ls = "lsd";
         sudo = "sudo ";
         conf = "sudo -e /etc/nixos/configuration.nix";
         hconf = "nvim ~/.config/home-manager/home.nix";

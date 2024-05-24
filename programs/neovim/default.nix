@@ -5,16 +5,17 @@ let
 in
 {
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-    }))
+    # (import (builtins.fetchTarball {
+    #   url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    # }))
     (self: super: {
       unstable = unstablePkgs;
     })
   ];
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.unstable.neovim-unwrapped;
+    # package = pkgs.neovim-nightly;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
