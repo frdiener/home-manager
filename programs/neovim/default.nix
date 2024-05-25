@@ -55,6 +55,7 @@ in
       ale      
       vim-matchup
       gruvbox-nvim
+      cyberdream-nvim
       {
         plugin = nvim-colorizer-lua;
         config = ''

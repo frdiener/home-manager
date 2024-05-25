@@ -16,18 +16,15 @@ in
   nixpkgs.config.allowUnfree = true;
   imports =
   [
-    ./programs/neovim
+    ./programs
+    ./config/themeing.nix
   ];
   home = {
     stateVersion = "23.11";
     username = "vr1l";
     homeDirectory = "/home/vr1l";
     packages = with pkgs; [
-      libsForQt5.bismuth
-      libsForQt5.plasma-applet-virtual-desktop-bar
-      unstable.kde-rounded-corners
       unstable.qutebrowser
-      lightly-boehs
       vscode-fhs
       unstable.firefox
       unstable.thunderbird
@@ -41,6 +38,7 @@ in
       nerdfonts # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
       ripgrep
       xclip
+      discord
       ripcord
       nodejs
       unstable.jdt-language-server
@@ -60,11 +58,24 @@ in
       unstable.openjdk22
       unstable.eclipses.eclipse-java
       lsd
+
+      #hyprland stuff
+      dunst
+      #? anyrun
+      ranger
+      libsForQt5.polkit-kde-agent
+
+      ## wallpaper stuff
+      hyprpaper
+      waypaper
+      swww
+      swaybg
     ];
   };
   xdg = {
     enable = true;
     configFile = {
+      "hypr/hyprpaper.conf".source = ./config/hyprpaper.conf;
       "vifm/vifmrc".source = ./config/vifmrc;
       "user-dirs.dirs".text = ''
         XDG_DESKTOP_DIR="$HOME/"
@@ -79,51 +90,22 @@ in
       '';                              
     };
   };
-  programs ={
-    bash = {
-      enable = true;
-      shellAliases = {
-        l = "lsd -l";
-        ll = "lsd -la";
-        ls = "lsd";
-        sudo = "sudo ";
-        conf = "sudo -e /etc/nixos/configuration.nix";
-        hconf = "nvim ~/.config/home-manager/home.nix";
-      };
-      # session Variables
-      sessionVariables = {
-        PATH="$HOME/.local/bin:$PATH:home-manager=/home/vr1l/.nix-defexpr/channels/home-manager"; 
-      };
-      # custom initialization for bash
-      initExtra = '' 
-        eval "$(direnv hook bash)"
-      '';
-    };
-    git = {
-      enable = true;
-      userName = "vr1l";
-      userEmail = "51481761+vr1l@users.noreply.github.com";
-    };
-    starship = {
-      enable = true;
-      package = unstablePkgs.starship;
-    };
-  };
-  systemd.user.services.fusuma = {
-    Unit = {
-      Description = "Fusuma Touch Gestures";
-      PartOf = [ "graphical-session.target" ];
-    };
 
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
+  # systemd.user.services.fusuma = {
+  #   Unit = {
+  #     Description = "Fusuma Touch Gestures";
+  #     PartOf = [ "graphical-session.target" ];
+  #   };
 
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.fusuma}/bin/fusuma";
-      Restart = "on-failure";
-      Environment = "DISPLAY=:0";
-    };
-  };
+  #   Install = {
+  #     WantedBy = [ "graphical-session.target" ];
+  #   };
+
+  #   Service = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.fusuma}/bin/fusuma";
+  #     Restart = "on-failure";
+  #     Environment = "DISPLAY=:0";
+  #   };
+  # };
 }
