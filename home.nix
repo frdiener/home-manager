@@ -34,7 +34,7 @@ in
       somafm-cli
       keepassxc
       ledger-live-desktop
-      shell_gpt
+      shell-gpt
       nerdfonts # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
       ripgrep
       xclip
@@ -58,6 +58,9 @@ in
       unstable.openjdk22
       unstable.eclipses.eclipse-java
       lsd
+      unstable.obsidian
+      llpp
+      zathura
 
       #hyprland stuff
       dunst
@@ -75,6 +78,8 @@ in
   xdg = {
     enable = true;
     configFile = {
+      "waybar/rofi-wifi-menu.sh".source = ./config/rofi-wifi-menu.sh;
+      "hypr/suspend.sh".source = ./config/suspend.sh;
       "hypr/hyprpaper.conf".source = ./config/hyprpaper.conf;
       "vifm/vifmrc".source = ./config/vifmrc;
       "user-dirs.dirs".text = ''
@@ -89,6 +94,13 @@ in
         XDG_PUBLICSHARE_DIR="$HOME/"   
       '';                              
     };
+  };
+
+  services.gammastep = {
+    enable = true;
+    provider = "manual";
+    latitude = 52.2;
+    longitude = 10.0;
   };
 
   # systemd.user.services.fusuma = {

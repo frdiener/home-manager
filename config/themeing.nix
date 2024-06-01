@@ -11,8 +11,8 @@
   gtk = {
     enable = true;
     font = {
-      package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
-      name = "JetBrainsMono Nerd Font Medium";
+      package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+      name = "FiraCode Nerd Font";
       size = 16;
     };
     iconTheme = {

@@ -4,8 +4,13 @@
     # swww
     hyprpicker
     wofi
-    networkmanagerapplet
+    libsecret
+    brightnessctl
+    playerctl
+    swaylock-effects
+    swayidle
   ];
+  
   systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
   wayland.windowManager.hyprland = {
     enable = true;

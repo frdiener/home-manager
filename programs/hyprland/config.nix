@@ -7,10 +7,11 @@
 
       # autostart
       exec-once = [
+        "keepassxc &"
         "waybar &"
         "hyprpaper &"
         "discord &"
-        "nm-applet --indicator &"
+        "~/.config/hypr/suspend.sh &"
       ];
 
       input = {
@@ -54,8 +55,8 @@
 
       decoration = {
         rounding = 9;
-        active_opacity = 0.90;
-        inactive_opacity = 0.90;
+        active_opacity = 0.95;
+        inactive_opacity = 0.85;
         fullscreen_opacity = 1.0;
 
         blur = {
@@ -97,6 +98,7 @@
       bind = [
         # keybindings
         "$mainMod, Return, exec, kitty"
+        ", code:464, exec, kitty --title float_kitty"
         "ALT, Return, exec, kitty --title float_kitty"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
@@ -106,6 +108,21 @@
         "$mainMod SHIFT, D, exec, hyprctl dispatch exec '[workspace 4 silent] discord'"
         "$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] spotify'"
         "$mainMod, E, exec, thunar"
+
+        # function keys
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        "$mainMod, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        "$mainMod, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        ", keyboard_brightness_up_shortcut, exec, brightnessctl -d *::kbd_backlight set +33%"
+        ", keyboard_brightness_down_shortcut, exec, brightnessctl -d *::kbd_backlight set -33%"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
 
         # switch focus
         "$mainMod, h, movefocus, l"
@@ -152,19 +169,6 @@
         "$mainMod ALT, k, moveactive, 0 -80"
         "$mainMod ALT, j, moveactive, 0 80"
 
-        # brightness controls
-        ",XF86MonBrightnessUp, exec, brightnessctl s 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-
-        # media and volume controls
-        ",XF86AudioRaiseVolume,exec, pamixer -i 2"
-        ",XF86AudioLowerVolume,exec, pamixer -d 2"
-        ",XF86AudioMute,exec, pamixer -t"
-        ",XF86AudioMicMute, exec, pamixer --default-source -t"
-        ",XF86AudioPlay,exec, playerctl play-pause"
-        ",XF86AudioNext,exec, playerctl next"
-        ",XF86AudioPrev,exec, playerctl previous"
-        ", XF86AudioStop, exec, playerctl stop"
         "$mainMod, mouse_down, workspace, e-1"
         "$mainMod, mouse_up, workspace, e+1"
       ];

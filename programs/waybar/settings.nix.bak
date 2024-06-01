@@ -10,20 +10,28 @@
     margin-right= 10;
 
     modules-left= [
-      "custom/separtor"
-      "hyprland/workspaces"
+        "custom/icon" 
+        "custom/separator"
+        "cpu"
+        "memory"
+        "temperature"
+        "custom/separator"
+        "custom/window-icon"
+        "hyprland/window"
+        "tray"
     ];
 
     modules-center= [
-      "clock"
+        "hyprland/workspaces"
     ];
 
     modules-right= [
-        "custom/nowplaying"
         "network"
+        "backlight"
         "pulseaudio"
+        "custom/right-arr" 
         "battery"
-        "custom/separtor"
+        "clock"
     ];
 
     "hyprland/window" = {
@@ -37,45 +45,31 @@
         calendar = {
           format = { today = "<span color='#b4befe'><b>{}</b></span>"; };
         };
-        format = "  {:%H:%M}";
+        format = " {:%H:%M}";
         tooltip= "true";
         tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format-alt= "  {:%d.%m.%Y}";
+        format-alt= " {:%d/%m}";
     };
 
     "hyprland/workspaces"= {
-      disable-scroll = true;
-      all-outputs = true;
-      warp-on-scroll = false;
-      format = "{icon}";
-      format-icons= {
-        "1"= "󰈹 ";
-        "2"= " ";
-        "3"= "󰘙 ";
-        "4"= " ";
-        "5"= " ";
-        "6"= " ";
-        "7"= "󰙯 ";
-        urgent = " ";
-        focused = " ";
-        default = " ";
-        sort-by-number= true;
+        format = "{icon}";
+        format-icons= {
+            "1"= "󰈹";
+            "2"= "";
+            "3"= "󰘙";
+            "4"= "󰙯";
+            "5"= "";
+            urgent= "";
+            default = "";
+            sort-by-number= true;
         };
+        on-scroll-up = "hyprctl dispatch workspace e-1";
+        on-scroll-down = "hyprctl dispatch workspace e+1";
         on-click = "activate";
     };
 
-    persistent-workspaces= {
-        "1"= "󰈹 ";
-        "2"= " ";
-        "3"= "󰘙 ";
-        "4"= " ";
-        "5"= " ";
-        "6"= " ";
-        "7"= "󰙯 ";
-    };
-
     memory= {
-        format= "  {}%";
+        format= " {}%";
         interval= 2;
     };
 
@@ -86,10 +80,10 @@
     };
 
     network = {
-        format-wifi = "  {bandwidthTotalBytes}";
-        format-ethernet = " {essid}";
+        format-wifi = " {bandwidthTotalBytes}";
+        format-ethernet = "";
         tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
-        format-linked = " {ifname} (No IP)";
+        format-linked = "{ifname} (No IP)";
         format-disconnected = "󰖪 ";
     };
 
@@ -114,17 +108,11 @@
     };
 
     battery = {
-        # states = {
-        #     // "good": 95,
-        #     "warning": 30,
-        #     "critical": 15
-        # };
-        format = "{icon} {capacity}%";
-        format-icons = ["  " "  " "  " "  " "  "];
-        format-plugged = "  {icon} {capacity}%";
-        format-charging = "  {icon} {capacity}%";
-        format-full = "  {icon} {capacity}%";
-        format-alt = "{icon} {time}";
+      format = "{icon} {capacity}%";
+      format-alt = "{icon} {time}";
+      format-charging = "󰚥 {capacity}%";
+      format-icons = [" " " " " " " "];
+      
     };
 
     tray= {
@@ -160,11 +148,11 @@
 
     "custom/icon"= {
         format= "";
+        
     };
 
     "custom/separtor" = {
       format = " ";
-        on-click = "~/.config/waybar/rofi-wifi-menu.sh";
     };
 
     "custom/window-icon" = {
